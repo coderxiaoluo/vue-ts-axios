@@ -1,0 +1,44 @@
+import { lRequest, baiduQuery } from '../../index'
+
+export function getUserTest(username: string) {
+}
+// 获取用户详情
+export function getUserAccount(cookie: string) {
+  return lRequest.get('/user/account', {
+    params: {
+      cookie,
+      timestamp: new Date().getTime(),
+      withCredentials: true
+    }
+  })
+}
+
+// 获取用户详情 bug
+export function getUserInfo(id: number) {
+  return lRequest.get(`/user/detail?uid=${id}`)
+}
+
+// 获取用户歌单
+export function getUserPlayList(id: number) {
+  return lRequest.get(`/user/playlist?uid=${id}`)
+}
+
+//   https://api.map.baidu.com/location/ip?ak=您的AK&ip=您的IP&coor=bd09ll
+export function getUserLoginIP(ip: number) {
+  baiduQuery.get(
+    `/reverse_geocoding/v3/?ak=7ejPjXA5vblz2PFSv3fRXTEGlvLN32sy&ip=${ip}&coor=bd09ll`
+  )
+}
+// 获取用户信息 , 歌单，收藏，mv, dj 数量
+
+//
+export function userPlaylist(uid: number) {
+  return lRequest.get(
+    `/user/playlist?uid=${uid}`
+  )
+}
+export function userTestPost(uid: number) {
+  return lRequest.post(
+    `/user/playlist?uid=${uid}`
+  )
+}
